@@ -1,20 +1,24 @@
-## importing necessary packages
-from flask import Flask, request, redirect, url_for, flash, jsonify
-import numpy as np
-import pickle as p
-import json
 
+from flask import Flask, request ,jsonify
+import random
+import requests
 
 app = Flask(__name__)
 
-@app.route('/detect/', methods=['POST'])
-def makecalc():
+@app.route('/', methods=['POST'])
+def verify():
     data = request.get_json()
-    prediction = np.array2string(model.predict(data))
+    print(data)
+    return jsonify(data)
 
-    return jsonify(prediction)
+
+@app.route('/', methods=['GET'])
+def respond():
+    req = request.args
+    print(req)
+    return "you have reach to root endpoint"
 
 if __name__ == '__main__':
-    modelfile = 'fraud_detect'
+    modelfile = 'finalized_model.sav'
     model = p.load(open(modelfile, 'rb'))
-    app.run(debug=True, host='0.0.0.0')
+    app.run()
