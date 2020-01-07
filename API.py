@@ -12,9 +12,9 @@ def verify():
     return jsonify(data)
 
 
-@app.route('/detect', methods=['GET'])
+@app.route('/', methods=['GET'])
 def respond():
-    req = request.args
+    req = request.get_json()
     print(req)
     return "you have reach to root endpoint"
 
