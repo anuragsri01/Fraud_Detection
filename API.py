@@ -12,7 +12,7 @@ def verify():
     return jsonify(data)
 
 
-@app.route('/', methods=['GET'])
+@app.route('/detect', methods=['GET'])
 def respond():
     req = request.args
     print(req)
