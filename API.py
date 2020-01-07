@@ -18,14 +18,11 @@ function to load our pre-trained detection model and prepare it for inference
 #     global model
 #     model = RandomForestClassifier
 
-@app.route('/', methods=['POST'])
+@app.route('/detect/', methods=['POST'])
 
 def makecalc():
     data = request.get_json()
-    print(data)
-    ab = model.predict(data)
-    # print(ab)
-    prediction = np.array2string(ab)
+    prediction = np.array2string(model.predict(data))
 
     return jsonify(prediction)
 
