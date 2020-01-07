@@ -5,18 +5,16 @@ import requests
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
-def verify():
+
+
+@app.route('/', methods=['GET', 'POST', 'DELETE', 'PUT'])                                                                                                    
+def add():                                                                                                                              
     data = request.get_json()
-    print(data)
+    # ... do your business logic, and return some response
+    # e.g. below we're just echo-ing back the received JSON data
     return jsonify(data)
 
 
-@app.route('/', methods=['GET'])
-def respond():
-    req = request.get_json()
-    print(req)
-    return jsonify(req)
 
 if __name__ == '__main__':
     modelfile = 'finalized_model.sav'
