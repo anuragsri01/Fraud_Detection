@@ -4,7 +4,7 @@ import requests
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
+@app.route('/data', methods=['POST'])
 def verify():
     data = request.get_json()
     print(data)
