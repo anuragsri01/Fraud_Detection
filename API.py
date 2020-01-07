@@ -33,4 +33,4 @@ def makecalc():
 if __name__ == '__main__':
     modelfile = 'finalized_model.sav'
     model = p.load(open(modelfile, 'rb'))
-    app.run()
+    app.run(host='0.0.0.0')
