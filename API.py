@@ -1,20 +1,21 @@
-
 from flask import Flask, request ,jsonify
 import random
 import requests
 
 app = Flask(__name__)
 
-
-
-@app.route('/', methods=['GET', 'POST', 'DELETE', 'PUT'])                                                                                                    
-def add():                                                                                                                              
+@app.route('/', methods=['POST'])
+def verify():
     data = request.get_json()
-    # ... do your business logic, and return some response
-    # e.g. below we're just echo-ing back the received JSON data
+    print(data)
     return jsonify(data)
 
 
+@app.route('/detect', methods=['GET'])
+def respond():
+    req = request.get_json()
+    print(req)
+    return "you have reach to root endpoint"
 
 if __name__ == '__main__':
     modelfile = 'finalized_model.sav'
