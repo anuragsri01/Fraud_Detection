@@ -1,19 +1,20 @@
+## importing necessary packages
+from flask import Flask, request, redirect, url_for, flash, jsonify
+import numpy as np
+import pickle as p
+import json
 
 
-from flask import Flask ,request
+app = Flask(__name__)
 
-app = Flask(_name_)
+@app.route('/detect/', methods=['POST'])
+def makecalc():
+    data = request.get_json()
+    prediction = np.array2string(model.predict(data))
 
-@app.route("/")
-def index():
-    return "Method used: %s" % request.method
+    return jsonify(prediction)
 
-@app.route("/detect", methods=['GET' , 'POST'])
-def detect():
-    if request.method == 'post':
-        return "You are using post"
-    else:
-        return "Your are using next time post"
-
-if _name_ == "__main__"
-    app.run()
+if __name__ == '__main__':
+    modelfile = 'fraud_detect'
+    model = p.load(open(modelfile, 'rb'))
+    app.run(debug=True, host='0.0.0.0')
