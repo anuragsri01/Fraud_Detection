@@ -8,26 +8,20 @@ import json
 # initialize our Flask application and detection model
 from sklearn.ensemble import RandomForestClassifier
 
-app = flask.Flask(__name__)
-# model = None
+from flask import Flask ,request
 
-"""
-function to load our pre-trained detection model and prepare it for inference
-"""
-# def load_model():
-#     global model
-#     model = RandomForestClassifier
+app = Flask(_name_)
 
-@app.route('/detect/', methods=['POST'])
+@app.route("/")
+def index():
+    return "Method used: %s" % request.method
 
-def makecalc():
-    data = request.get_json()
-    prediction = np.array2string(model.predict(data))
+@app.route("/detect", methods=['GET' , 'POST'])
+def detect():
+    if request.method == 'post':
+        return "You are using post"
+    else:
+        return "Your are using next time post"
 
-    return jsonify(prediction)
-
-
-if __name__ == '__main__':
-    modelfile = 'finalized_model.sav'
-    model = p.load(open(modelfile, 'rb'))
-    app.run(host='0.0.0.0')
+if _name_ == "__main__"
+    app.run()
