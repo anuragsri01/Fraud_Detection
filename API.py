@@ -16,7 +16,7 @@ def verify():
 def respond():
     req = request.get_json()
     print(req)
-    return "you have reach to root endpoint"
+    return jsonify(req)
 
 if __name__ == '__main__':
     modelfile = 'finalized_model.sav'
