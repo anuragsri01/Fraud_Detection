@@ -12,10 +12,9 @@ def verify():
 
 
 @app.route('/', methods=['GET'])
-def respond():
-    req = request.args
-    print(req)
-    return jsonify(req)
+def parse_request():
+    data = request.data
+    return jsonify(data)
 
 
 if __name__ == '__main__':
