@@ -11,9 +11,11 @@ def verify():
     print(data)
     return jsonify(data)
 
-@app.route('/detect', methods=['GET'])
-def returnAll():
-    return jsonify({'detect': app})
+@app.route('/', methods=['GET'])
+def respond():
+    req = request.args
+    print(req)
+    return jsonify(req)
 
 if __name__ == '__main__':
     modelfile = 'finalized_model.sav'
