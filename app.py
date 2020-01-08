@@ -19,15 +19,16 @@ def predict():
     '''
     #get data
     data = request.get_json(force=True)
+    final_features = np.array2string(data)
     
     #predictions
-    result = np.array2string(model.predict(data))
+    result = model.predict(final_features)
     
     #send back to browser
-    output = {'results': int(result[0])}
+    output = jsonify(prediction)
     
     #return data
-    return jsonify(prediction)
+    return render_template('index.html', prediction_text='Transaction is:-'.format(output))
 
 if __name__ == '__main__':
     app.run(debug=True)
