@@ -10,7 +10,7 @@ app = Flask(__name__)
 model = pickle.load(open('finalized_model.sav', 'rb'))
 
 #routes
-@app.route('/')
+@app.route('/detect/', methods=['POST'])
 def predict():
     data = request.get_json()
     prediction = np.array2string(model.predict(data))
