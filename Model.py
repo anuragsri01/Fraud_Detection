@@ -7,7 +7,7 @@ import pandas as pd
 import seaborn as sns
 
 # Load the dataset from the csv file using pandas
-path = r"C:\Users\anurag.s\Desktop\test_img/creditcard.csv"
+path = r"https://github.com/anuragsri01/Fraud_Detection/blob/master/check.csv"
 data = pd.read_csv(path)
 
 # Grab a peek at the data
