@@ -11,23 +11,12 @@ model = pickle.load(open('finalized_model.sav', 'rb'))
 
 #routes
 @app.route('/')
-def home():
-    return render_template('index.html')
-
-@app.route('/predict', methods=['POST'])
 def predict():
-    '''
-    For rendering results on HTML GUI
-    '''
-    #get data
-    data = request.get_json(force=True)
+    data = request.get_json()
     prediction = np.array2string(model.predict(data))
-    
-    #send back to browser
-    output = jsonify(prediction)
-    
-    #return data
-    return render_template('index.html', prediction_text='Transaction is:-'.format(output))
+
+    return jsonify(prediction)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
