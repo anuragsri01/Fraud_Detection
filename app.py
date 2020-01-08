@@ -14,23 +14,20 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 
 def predict():
+    '''
+    For rendering results on HTML GUI
+    '''
     #get data
     data = request.get_json(force=True)
     
-    #convert data into dataframe
-    data.update((x, [y]) for x, y in data.items())
-    data_df = pd.DataFrame.from_dict(data)
-    
     #predictions
-    result = model.predict(data_df)
+    result = np.array2string(model.predict(data))
     
     #send back to browser
     output = {'results': int(result[0])}
     
     #return data
-    return jsonify(results=output)
+    return render_template('index.html', prediction_text = 'New Transaction is :-' jsonify(prediction)
 
 if __name__ == '__main__':
-#     modelfile = 'finalized_model.sav'
-#     model = p.load(open(modelfile, 'rb'))
-    app.run()
+    app.run(debug=True)
