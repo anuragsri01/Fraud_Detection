@@ -13,9 +13,9 @@ def verify():
 
 @app.route('/', methods=['GET'])
 def respond():
-    req = request.args
-    print(req)
-    return jsonify(req)
+    data = p.read_csv(
+        'https://github.com/anuragsri01/Fraud_Detection/blob/master/check.csv')
+    data.head(3)
 
 
 if __name__ == '__main__':
