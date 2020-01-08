@@ -1,9 +1,8 @@
-
-from flask import Flask, request ,jsonify,
-import random
-import requests
+import pickle as p
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+
 
 @app.route('/', methods=['POST'])
 def verify():
@@ -17,6 +16,7 @@ def respond():
     req = request.args
     print(req)
     return jsonify(req)
+
 
 if __name__ == '__main__':
     model_file = 'finalized_model.sav'
