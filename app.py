@@ -1,50 +1,24 @@
 
-from flask import Flask
-from flask import jsonify
-from flask import request
+from flask import Flask, request ,jsonify,
+import random
+import requests
 
 app = Flask(__name__)
 
+@app.route('/', methods=['POST'])
+def verify():
+    data = request.get_json()
+    print(data)
+    return jsonify(data)
 
-quarks = 'finalized_model.sav'
 
 @app.route('/', methods=['GET'])
-def hello_world():
-    return jsonify({'message' : 'Hello, World!'})
+def respond():
+    req = request.args
+    print(req)
+    return jsonify(req)
 
-@app.route('/quarks', methods=['GET'])
-def returnAll():
-    return jsonify({'quarks' : quarks})
-
-@app.route('/quarks/<string:name>', methods=['GET'])
-def returnOne(name):
-    theOne = quarks[0]
-    for i,q in enumerate(quarks):
-      if q['name'] == name:
-        theOne = quarks[i]
-    return jsonify({'quarks' : theOne})
-
-@app.route('/quarks', methods=['POST'])
-def addOne():
-    new_quark = request.get_json()
-    quarks.append(new_quark)
-    return jsonify({'quarks' : quarks})
-
-@app.route('/quarks/<string:name>', methods=['PUT'])
-def editOne(name):
-    new_quark = request.get_json()
-    for i,q in enumerate(quarks):
-      if q['name'] == name:
-        quarks[i] = new_quark
-    qs = request.get_json()
-    return jsonify({'quarks' : quarks})
-
-@app.route('/quarks/<string:name>', methods=['DELETE'])
-def deleteOne(name):
-    for i,q in enumerate(quarks):
-      if q['name'] == name:
-        del quarks[i]
-    return jsonify({'quarks' : quarks})
-
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    model_file = 'finalized_model.sav'
+    model = p.load(open(model_file, 'rb'))
+    app.run()
