@@ -1,4 +1,4 @@
-import pandad as pd
+import pandas as pd
 from flask import Flask, request ,jsonify
 import random
 import pickle
