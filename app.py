@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 from flask import Flask, request ,jsonify
-import random
 import pickle
 import requests
 
@@ -28,7 +27,7 @@ def predict():
     output = {'results': int(result[0])}
     
     #return data
-    return render_template('index.html', prediction_text = 'New Transaction is :-' jsonify(prediction)
+    return jsonify(prediction)
 
 if __name__ == '__main__':
     app.run(debug=True)
