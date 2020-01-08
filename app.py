@@ -1,22 +1,24 @@
-import pandas as pd
-import numpy as np
+
 from flask import Flask, request ,jsonify
-import pickle
+import random
 import requests
 
-#app
 app = Flask(__name__)
-#load model
-model = pickle.load(open('finalized_model.sav', 'rb'))
 
-#routes
-@app.route('/detect/', methods=['POST'])
-def predict():
+@app.route('/', methods=['POST'])
+def verify():
     data = request.get_json()
-    prediction = np.array2string(model.predict(data))
+    print(data)
+    return jsonify(data)
 
-    return jsonify(prediction)
 
+@app.route('/', methods=['GET'])
+def respond():
+    req = request.args
+    print(req)
+    return "you have reach to root endpoint"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    modelfile = 'finalized_model.sav'
+    model = p.load(open(modelfile, 'rb'))
+    app.run()
